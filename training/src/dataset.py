@@ -24,8 +24,8 @@ import multiprocessing
 
 BASE = "/root/hdd"
 BASE_PATH = ""
-TRAIN_JSON = "ai_challenger_train.json"
-VALID_JSON = "ai_challenger_valid.json"
+TRAIN_JSON = "person_keypoints_train2017.json"
+VALID_JSON = "person_keypoints_train2017.json"
 
 TRAIN_ANNO = None
 VALID_ANNO = None
@@ -35,8 +35,8 @@ CONFIG = None
 def set_config(config):
     global CONFIG, BASE, BASE_PATH
     CONFIG = config
-    BASE = CONFIG['imgpath']
-    BASE_PATH = CONFIG['datapath']
+    BASE = '/content/drive/My Drive/Keypoints/images/train2017'
+    BASE_PATH ='/content/drive/My Drive/Keypoints/annotations/'
 
 
 def _parse_function(imgId, is_train, ann=None):
@@ -63,7 +63,7 @@ def _parse_function(imgId, is_train, ann=None):
     anno_ids = anno.getAnnIds(imgIds=imgId)
     img_anno = anno.loadAnns(anno_ids)
     idx = img_meta['id']
-    img_path = join(BASE, img_meta['file_name'])
+    img_path = join(BASE, img_meta['filename'])
 
     img_meta_data = CocoMetadata(idx, img_path, img_meta, img_anno, sigma=6.0)
     img_meta_data = pose_random_scale(img_meta_data)
