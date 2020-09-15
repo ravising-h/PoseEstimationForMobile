@@ -58,7 +58,7 @@ class CocoPose:
 
 
 class CocoMetadata:
-    __coco_parts = 14
+    __coco_parts = 37
 
     @staticmethod
     def parse_float(four_np):
@@ -92,8 +92,8 @@ class CocoMetadata:
 
         self.joint_list = []
         transform = list(zip(
-            [1, 2, 4, 6, 8, 3, 5, 7, 10, 12, 14, 9, 11, 13],
-            [1, 2, 4, 6, 8, 3, 5, 7, 10, 12, 14, 9, 11, 13]
+            [i for i in range(37)],
+            [i for i in range(37)]
         ))
         for prev_joint in joint_list:
             new_joint = []
